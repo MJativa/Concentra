@@ -1,8 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Merriweather, serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  height: 100vh; /* Hace que el contenedor ocupe el 100% de la altura de la ventana */
+  text-align: center; /* Centra el texto dentro de los elementos */
+}
+
+.formularioinicio form {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos del formulario verticalmente */
+  align-items: center; /* Centra los inputs y etiquetas */
+}
+
+.btn {
+  width: 200px; /* Ajusta el ancho de los botones */
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#loginConcentra{
+  background-color: #A51C30;
+}
+
+.contenedorregistro {
+  border: 2px solid #A51C30;       /* Marco rojo oscuro */
+  border-radius: 12px;             /* Bordes redondeados */
+  padding: 30px;                   /* Espaciado interno */
+  background-color: #f0c7a6;       /* Fondo claro, opcional */
+  max-width: 400px;                /* Para que no se haga demasiado ancho */
+  margin: 50px auto;               /* Centrado en la página */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  width: 100%; /* Asegura que los campos ocupen todo el ancho del contenedor */
+  padding: 10px; /* Espacio interno */
+  margin: 10px 0; /* Margen entre los inputs */
+  border: 2px solid #ccc; /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #f9f9f9; /* Fondo claro */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: all 0.3s ease; /* Transiciones suaves */
+}
+
+/* Efecto cuando el input está enfocado (cuando se hace clic o está activo) */
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+  border-color: #A51C30; /* Cambia el borde a un color más fuerte */
+  box-shadow: 0 0 8px rgba(165, 28, 48, 0.7); /* Sombra sutil */
+  outline: none; /* Elimina el borde azul predeterminado */
+}
+
+/* Etiquetas de los campos de texto */
+label {
+  font-size: 14px;
+  color: #555; /* Color oscuro para las etiquetas */
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block; /* Hace que la etiqueta esté en una línea encima del input */
+}
+
+#loginGoogle {
+  background-color: rgb(3, 70, 255); /* Color de fondo rojo */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  padding: 10px 20px; /* Espaciado interior */
+  font-size: 16px; /* Tamaño de la fuente */
+  cursor: pointer; /* Cambia el cursor a mano */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+#loginConcentra {
+  background-color: #A51C30; /* Color de fondo rojo */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  padding: 10px 20px; /* Espaciado interior */
+  font-size: 16px; /* Tamaño de la fuente */
+  cursor: pointer; /* Cambia el cursor a mano */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+/* Efecto al pasar el mouse */
+.botonesregistro:hover {
+  background-color: #D84A5B; /* Color de fondo cuando el mouse está encima */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño del botón */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega una sombra para resaltar */
+}
+
+
 body {
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    color: #2a2a2a;
-  }  
+  background-color: #E1C6A8;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+h1 {
+  font-style: italic;
+  text-align: center;
+  color: black;
+  margin-bottom: 200px;                
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+#bannerprincipal{
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+
+.imagenprincipal{
+  background-image: url("media/Estudio.jpg");
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat;
+  height: 100vh;                
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.separadores{
+  background-color: #A51C30;
+  height: 50px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.menu-principal {
+  background-color: #A51C30;
+  padding: 10px 30px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+  padding: 10px 0; /* menos padding horizontal evita cortes */
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* Iconos */
+.menu i {
+  width: 18px;
+  height: 18px;
+}
+
+/* Flecha en menú desplegable */
+.arrow {
+  margin-left: 4px;
+  font-size: 12px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Submenú */
+.submenu {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #8c1b2b;
+  padding: 10px 0;
+  border-radius: 6px;
+  min-width: 170px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: visible; /* Asegura que los hijos no se oculten */
+}
+
+.dropdown:hover .submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(90deg);
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 15px;
+  color: white;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.submenu li a:hover {
+  background-color: #A51C30;
+}
+
+.contenidoprincipal{
+  background-color: sandybrown;
+  margin-top: 25px;
+}
