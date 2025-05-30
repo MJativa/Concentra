@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cronómetro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<nav class="cr-navbar">
+    <ul class="cr-nav-list">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="cronometro.html" class="active">Cronómetro</a></li>
+      <li><a href="quienesomos.html">¿Quiénes Somos?</a></li>
+    </ul>
+  </nav>
+<body class="cr-body">
+
+  <div class="cr-wrapper">
+    <h1 class="cr-title">Selecciona tu tiempo</h1>
+    <div class="cr-buttons">
+      <button class="cr-time-btn" data-minutos="5">5 min</button>
+      <button class="cr-time-btn" data-minutos="10">10 min</button>
+      <button class="cr-time-btn" data-minutos="15">15 min</button>
+      <button class="cr-time-btn" data-minutos="25">25 min</button>
+      <button class="cr-time-btn" data-minutos="45">45 min</button>
+    </div>
+
+    <div class="cr-timer" id="cr-timer"></div>
+  </div>
+  <audio id="alarmaSonido" src="media/finalcronometro.mp3" preload="auto"></audio>
+  <script src="scripts.js"></script>
+</body>
+</html>
