@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+
 * {
   margin: 0;
   padding: 0;
@@ -471,4 +474,196 @@ h1 {
 
 .btn-contacto:hover {
   background-color: #8e1928;
+}
+
+/*MAPA MENTAL*/
+/* ======= ESTILO GENERAL ======= */
+.tecnica-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Merriweather', serif;
+  background-color: #f6f7fb;
+  color: #333;
+}
+
+/* ======= CONTENEDOR PRINCIPAL ======= */
+.tecnica-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: justify;
+}
+
+.tecnica-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ======= TÍTULOS Y TEXTOS ======= */
+/* Corrige el selector */
+#mapatitulo {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 5px;
+  color: #A51C30;
+}
+
+/* Nuevo contenedor para centrar los elementos superiores */
+.tecnica-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tecnica-header h2 {
+  margin: 8px 0;
+}
+
+.tecnica-header p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.tecnica-title {
+  font-size: 2.4rem;
+  margin-bottom: 10px; /* Reduce espacio */
+  color: #A51C30;
+  text-align: center;
+}
+
+.tecnica-section-title {
+  font-size: 1.4rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #A51C30;
+  border-left: 5px solid #A51C30;
+  padding-left: 12px;
+}
+
+/* ======= IMAGEN DEL CREADOR ======= */
+
+.tecnica-autor {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra imagen + texto */
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto 10px;  /* Menos separación hacia el título */
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  max-width: 400px; /* Evita que se extienda mucho */
+  text-align: center; /* Centra el texto */
+}
+
+.tecnica-autor img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #A51C30;
+}
+
+.tecnica-autor-info {
+  font-size: 1rem;
+  color: #444;
+  font-style: italic;
+}
+
+/* ======= LISTAS ======= */
+.tecnica-list {
+  padding-left: 20px;
+}
+
+.tecnica-list li {
+  margin-bottom: 8px;
+}
+
+/* ======= CARRERAS DESTACADAS ======= */
+.tecnica-carreras {
+  background-color: #fafafa;
+  padding: 20px;
+  margin-top: 25px;
+  border-left: 4px solid #A51C30;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.tecnica-carreras strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #A51C30;
+}
+
+/* ======= IMAGEN DE EJEMPLO DEL MÉTODO ======= */
+.tecnica-ejemplo {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.tecnica-ejemplo img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.tecnica-ejemplo img:hover {
+  transform: scale(1.03);
+}
+
+.tecnica-ejemplo p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .tecnica-container {
+    margin: 30px 20px;
+    padding: 20px;
+  }
+
+  .tecnica-autor {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tecnica-autor img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/*POMODORO*/
+.pomodoro-boton {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.pomodoro-boton p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.btn-pomodoro {
+  background-color: #A51C30;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-pomodoro:hover {
+  background-color: #e5533d;
 }
