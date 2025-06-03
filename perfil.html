@@ -105,48 +105,62 @@
   </div>
 
   <script>
-    firebase.auth().onAuthStateChanged(user => {
-      const barra = document.getElementById('barra-usuario');
-      const perfil = document.getElementById('info-perfil');
+  firebase.auth().onAuthStateChanged(user => {
+    const barra = document.getElementById('barra-usuario');
+    const perfil = document.getElementById('info-perfil');
 
-      if (user) {
-        const nombre = user.displayName || "Usuario sin nombre";
-        const correo = user.email;
-        const uid = user.uid;
-        const creado = user.metadata.creationTime;
-        const ultimoLogin = user.metadata.lastSignInTime;
-        const rol = "Estudiante"; // puedes actualizarlo según tu sistema
-        const metodosEstudiados = 5; // simulado
-        const tematicasFavoritas = ["Memoria", "Lectura rápida", "Atención"]; // simulado
-        const estado = "Activo";
+    // Función para convertir a hora local de Quito
+    function convertirAGuayaquil(fechaGMT) {
+      const fecha = new Date(fechaGMT);
+      return fecha.toLocaleString('es-EC', {
+        timeZone: 'America/Guayaquil',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+    }
 
-        barra.innerHTML = `
-          <span>Bienvenido, <a href="perfil.html">${nombre}</a></span>
-          <button id="cerrarSesion">Cerrar sesión</button>
-        `;
+    if (user) {
+      const nombre = user.displayName || "Usuario sin nombre";
+      const correo = user.email;
+      const uid = user.uid;
+      const creado = convertirAGuayaquil(user.metadata.creationTime);
+      const ultimoLogin = convertirAGuayaquil(user.metadata.lastSignInTime);
+      const rol = "Estudiante"; // puedes actualizarlo según tu sistema
+      const metodosEstudiados = 5; // simulado
+      const tematicasFavoritas = ["Memoria", "Lectura rápida", "Atención"]; // simulado
+      const estado = "Activo";
 
-        perfil.innerHTML = `
-          <p><strong>Nombre:</strong> ${nombre}</p>
-          <p><strong>Email:</strong> ${correo}</p>
-          <p><strong>ID de usuario:</strong> ${uid}</p>
-          <p><strong>Rol:</strong> ${rol}</p>
-          <p><strong>Fecha de registro:</strong> ${creado}</p>
-          <p><strong>Último acceso:</strong> ${ultimoLogin}</p>
-          <p><strong>Métodos de estudio completados:</strong> ${metodosEstudiados}</p>
-          <p><strong>Temáticas favoritas:</strong> ${tematicasFavoritas.join(', ')}</p>
-          <p><strong>Estado de cuenta:</strong> ${estado}</p>
-        `;
+      barra.innerHTML = `
+        <span>Bienvenido, <a href="perfil.html">${nombre}</a></span>
+        <button id="cerrarSesion">Cerrar sesión</button>
+      `;
 
-        document.getElementById('cerrarSesion').onclick = () => {
-          firebase.auth().signOut().then(() => {
-            window.location.href = "index.html";
-          });
-        };
+      perfil.innerHTML = `
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>Email:</strong> ${correo}</p>
+        <p><strong>ID de usuario:</strong> ${uid}</p>
+        <p><strong>Rol:</strong> ${rol}</p>
+        <p><strong>Fecha de registro:</strong> ${creado}</p>
+        <p><strong>Último acceso:</strong> ${ultimoLogin}</p>
+        <p><strong>Métodos de estudio completados:</strong> ${metodosEstudiados}</p>
+        <p><strong>Temáticas favoritas:</strong> ${tematicasFavoritas.join(', ')}</p>
+        <p><strong>Estado de cuenta:</strong> ${estado}</p>
+      `;
 
-      } else {
-        window.location.href = "index.html";
-      }
-    });
-  </script>
+      document.getElementById('cerrarSesion').onclick = () => {
+        firebase.auth().signOut().then(() => {
+          window.location.href = "index.html";
+        });
+      };
+
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+</script>
 </body>
 </html>

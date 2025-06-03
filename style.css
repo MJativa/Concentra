@@ -992,3 +992,16 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/*FORMULARIO*/
+.btn-maroon {
+  background-color: #800000; /* rojo vino Harvard */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+}
+.btn-maroon:hover {
+  background-color: #660000;
+}

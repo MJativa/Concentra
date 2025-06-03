@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CONCENTRA</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon" />
 
     <!-- Bootstrap -->
     <link
@@ -59,6 +60,44 @@
           Cerrar sesión
         </button>
       </div>
+      <div class="text-center mt-4">
+        <p>
+          ¿No tienes cuenta aún?
+          <a
+            href="formulario.html"
+            onclick="document.getElementById('formularioRegistro').style.display = 'block';"
+            >Únete</a
+          >
+        </p>
+
+        <div id="formularioRegistro" style="display: none; margin-top: 20px">
+          <form>
+            <label for="registroEmail">Correo electrónico:</label><br />
+            <input
+              type="email"
+              id="registroEmail"
+              name="registroEmail"
+              required
+            /><br />
+
+            <label for="registroPassword">Contraseña:</label><br />
+            <input
+              type="password"
+              id="registroPassword"
+              name="registroPassword"
+              required
+            /><br /><br />
+
+            <button
+              type="button"
+              onclick="registrarUsuario()"
+              class="botonesregistro"
+            >
+              Registrarse
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
 
     <footer class="footer">
@@ -99,7 +138,7 @@
           .then((result) => {
             const user = result.user;
             alert("Bienvenido " + user.displayName);
-                window.location.href = "inicio.html"; // Redirige al inicio
+            window.location.href = "inicio.html"; // Redirige al inicio
           })
           .catch((error) => {
             alert("Error con Google: " + error.message);
@@ -165,6 +204,30 @@
           document.getElementById("logout").style.display = "none";
         }
       });
+      function registrarUsuario() {
+        const nombre = document.getElementById("registroNombre").value;
+        const email = document.getElementById("registroEmail").value;
+        const password = document.getElementById("registroPassword").value;
+
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            return user
+              .updateProfile({
+                displayName: nombre,
+              })
+              .then(() => {
+                alert("Registro exitoso. Bienvenido " + nombre);
+                localStorage.setItem("usuarioNombre", nombre);
+                window.location.href = "inicio.html"; // o a donde quieras redirigir
+              });
+          })
+          .catch((error) => {
+            alert("Error al registrar: " + error.message);
+          });
+      }
     </script>
   </body>
 </html>

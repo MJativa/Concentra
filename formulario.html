@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro - CONCENTRA</title>
+
+  <!-- Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100vh; background-color: #fff;">
+
+  <div class="text-center mb-4">
+    <h2 style="font-family: 'Merriweather', serif; color: #800000;">Únete a CONCENTRA</h2>
+    <p>Completa el siguiente formulario para crear tu cuenta</p>
+  </div>
+
+  <div style="max-width: 400px; width: 100%; background-color: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <form id="registroForm">
+      <div class="form-group">
+        <label for="registroNombre"><strong>Nombre completo</strong></label>
+        <input type="text" class="form-control" id="registroNombre" required />
+      </div>
+      <div class="form-group">
+        <label for="registroEmail"><strong>Correo electrónico</strong></label>
+        <input type="email" class="form-control" id="registroEmail" required />
+      </div>
+      <div class="form-group">
+        <label for="registroPassword"><strong>Contraseña</strong></label>
+        <input type="password" class="form-control" id="registroPassword" required />
+      </div>
+      <button type="submit" class="btn btn-maroon btn-block">Registrarse</button>
+    </form>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+      authDomain: "concentra-656aa.firebaseapp.com",
+      projectId: "concentra-656aa",
+      storageBucket: "concentra-656aa.appspot.com",
+      messagingSenderId: "336932376021",
+      appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+      measurementId: "G-SQN0RS051N",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    document.getElementById('registroForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById('registroNombre').value;
+      const email = document.getElementById('registroEmail').value;
+      const password = document.getElementById('registroPassword').value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          return userCredential.user.updateProfile({
+            displayName: nombre
+          });
+        })
+        .then(() => {
+          localStorage.setItem("usuarioNombre", nombre);
+          alert("Registro exitoso. Bienvenido " + nombre);
+          window.location.href = "inicio.html";
+        })
+        .catch((error) => {
+          alert("Error al registrar: " + error.message);
+        });
+    });
+  </script>
+
+  <style>
+    .btn-maroon {
+      background-color: #800000;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .btn-maroon:hover {
+      background-color: #660000;
+    }
+  </style>
+
+</body>
+</html>
