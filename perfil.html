@@ -1,0 +1,152 @@
+<!-- perfil.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfil de Usuario</title>
+  <link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // Configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+    authDomain: "concentra-656aa.firebaseapp.com",
+    projectId: "concentra-656aa",
+    storageBucket: "concentra-656aa.appspot.com",
+    messagingSenderId: "336932376021",
+    appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+    measurementId: "G-SQN0RS051N"
+  };
+
+  // Inicializar Firebase (solo si no ha sido inicializado antes)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  // Control de sesión
+  firebase.auth().onAuthStateChanged(user => {
+    const barra = document.getElementById('barra-usuario');
+
+    if (barra) {
+      if (user) {
+        const nombre = user.displayName || user.email;
+        barra.innerHTML = `
+          <span style="margin-right: 10px;">Bienvenido, <a href="perfil.html" style="text-decoration: underline;">${nombre}</a></span>
+          <button id="cerrarSesion" class="btn btn-sm btn-outline-danger">Salir</button>
+        `;
+        document.getElementById('cerrarSesion').onclick = () => {
+          firebase.auth().signOut().then(() => {
+            window.location.href = "index.html";
+          });
+        };
+      } else {
+        if (!window.location.href.includes("index.html")) {
+          window.location.href = "index.html";
+        }
+      }
+    }
+  });
+</script>
+</head>
+<body>
+      <div class="menu-principal">
+        <ul class="menu">
+          <li class="logo-inicio">
+            <a href="inicio.html">
+              <img src="media/logo.png" alt="Ir al inicio" />
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="#"
+              ><i class="fas fa-book"></i> Métodos de Estudio
+              <span class="arrow">-></span></a
+            >
+            <ul class="submenu">
+              <li><a href="mapamental.html">Mapas Mentales</a></li>
+              <li><a href="resumenes.html">Resumenes</a></li>
+              <li>
+                <a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a>
+              </li>
+              <li><a href="pomodoro.html">Técnica Pomodoro</a></li>
+              <li>
+                <a href="auto.html">Autoevaluación (Test o Cuestionarios)</a>
+              </li>
+              <li><a href="feyman.html">Método Feynman</a></li>
+              <li><a href="activa.html">Lectura Activa (SQ3R o PQRST)</a></li>
+              <li>
+                <a href="intercalado.html"
+                  >Estudio Intercalado (Interleaving)</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="cronometro.html"
+              ><i class="fas fa-clock"></i> Cronómetro</a
+            >
+          </li>
+          <li>
+            <a href="quienesomos.html"
+              ><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a
+            >
+          </li>
+           <li id="barra-usuario" style="margin-left: auto;"></li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="perfil-container">
+    <h2>Mi Perfil de Estudio</h2>
+    <div id="info-perfil" class="perfil-info"></div>
+  </div>
+
+  <script>
+    firebase.auth().onAuthStateChanged(user => {
+      const barra = document.getElementById('barra-usuario');
+      const perfil = document.getElementById('info-perfil');
+
+      if (user) {
+        const nombre = user.displayName || "Usuario sin nombre";
+        const correo = user.email;
+        const uid = user.uid;
+        const creado = user.metadata.creationTime;
+        const ultimoLogin = user.metadata.lastSignInTime;
+        const rol = "Estudiante"; // puedes actualizarlo según tu sistema
+        const metodosEstudiados = 5; // simulado
+        const tematicasFavoritas = ["Memoria", "Lectura rápida", "Atención"]; // simulado
+        const estado = "Activo";
+
+        barra.innerHTML = `
+          <span>Bienvenido, <a href="perfil.html">${nombre}</a></span>
+          <button id="cerrarSesion">Cerrar sesión</button>
+        `;
+
+        perfil.innerHTML = `
+          <p><strong>Nombre:</strong> ${nombre}</p>
+          <p><strong>Email:</strong> ${correo}</p>
+          <p><strong>ID de usuario:</strong> ${uid}</p>
+          <p><strong>Rol:</strong> ${rol}</p>
+          <p><strong>Fecha de registro:</strong> ${creado}</p>
+          <p><strong>Último acceso:</strong> ${ultimoLogin}</p>
+          <p><strong>Métodos de estudio completados:</strong> ${metodosEstudiados}</p>
+          <p><strong>Temáticas favoritas:</strong> ${tematicasFavoritas.join(', ')}</p>
+          <p><strong>Estado de cuenta:</strong> ${estado}</p>
+        `;
+
+        document.getElementById('cerrarSesion').onclick = () => {
+          firebase.auth().signOut().then(() => {
+            window.location.href = "index.html";
+          });
+        };
+
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  </script>
+</body>
+</html>

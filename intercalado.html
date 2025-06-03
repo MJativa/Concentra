@@ -1,100 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/your-kit.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-  <!-- Menú principal -->
-  <div class="menu-principal">
-    <ul class="menu">
-      <li class="dropdown">
-        <a href="#"><i class="fas fa-book"></i> Métodos de Estudio <span class="arrow">→</span></a>
-        <ul class="submenu">
+    <script>
+      // Configuración de Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+        authDomain: "concentra-656aa.firebaseapp.com",
+        projectId: "concentra-656aa",
+        storageBucket: "concentra-656aa.appspot.com",
+        messagingSenderId: "336932376021",
+        appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+        measurementId: "G-SQN0RS051N",
+      };
+
+      // Inicializar Firebase (solo si no ha sido inicializado antes)
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      // Control de sesión
+      firebase.auth().onAuthStateChanged((user) => {
+        const barra = document.getElementById("barra-usuario");
+
+        if (barra) {
+          if (user) {
+            const nombre = user.displayName || user.email;
+            barra.innerHTML = `
+          <span style="margin-right: 10px;">Bienvenido, <a href="perfil.html" style="text-decoration: underline;">${nombre}</a></span>
+          <button id="cerrarSesion" class="btn btn-sm btn-outline-danger">Salir</button>
+        `;
+            document.getElementById("cerrarSesion").onclick = () => {
+              firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                  window.location.href = "index.html";
+                });
+            };
+          } else {
+            if (!window.location.href.includes("index.html")) {
+              window.location.href = "index.html";
+            }
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Menú principal -->
+    <div class="menu-principal">
+      <ul class="menu">
+        <li class="logo-inicio">
+          <a href="inicio.html">
+            <img src="media/logo.png" alt="Ir al inicio" />
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#"
+            ><i class="fas fa-book"></i> Métodos de Estudio
+            <span class="arrow">→</span></a
+          >
+          <ul class="submenu">
             <li><a href="mapamental.html">Mapa Mental</a></li>
             <li><a href="resumenes.html">Resumenes</a></li>
-            <li><a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a></li>
+            <li>
+              <a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a>
+            </li>
             <li><a href="pomodoro.html">Técnica Pomodoro</a></li>
-            <li><a href="auto.html">Autoevaluación (Test o Cuestionarios)</a></li>
+            <li>
+              <a href="auto.html">Autoevaluación (Test o Cuestionarios)</a>
+            </li>
             <li><a href="feyman.html">Método Feynman</a></li>
             <li><a href="activa.html">Lectura Activa (SQ3R o PQRST)</a></li>
-        </ul>
-      </li>
-      <li><a href="cronometro.html"><i class="fas fa-clock"></i> Cronómetro</a></li>
-      <li><a href="quienesomos.html"><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a></li>
-    </ul>
-  </div>
+          </ul>
+        </li>
+        <li>
+          <a href="cronometro.html"><i class="fas fa-clock"></i> Cronómetro</a>
+        </li>
+        <li>
+          <a href="quienesomos.html"
+            ><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a
+          >
+        </li>
+        <li id="barra-usuario" style="margin-left: auto"></li>
+      </ul>
+    </div>
 
-<!-- Contenido principal - Estudio Intercalado -->
-<div class="tecnica-container">
+    <!-- Contenido principal - Estudio Intercalado -->
+    <div class="tecnica-container">
+      <!-- Título -->
+      <h2 class="tecnica-title">Estudio Intercalado (Interleaving)</h2>
 
-    <!-- Título -->
-    <h2 class="tecnica-title">Estudio Intercalado (Interleaving)</h2>
-  
-    <!-- Sección de contenido -->
-    <div class="tecnica-info">
-      <section class="tecnica-bloque">
-        <h2>¿En qué consiste?</h2>
-        <p>El Estudio Intercalado es una técnica que consiste en alternar diferentes temas o habilidades durante una misma sesión de estudio, en lugar de enfocarse en una sola área por mucho tiempo. A diferencia del estudio bloqueado (centrado en un solo tema), el intercalado mejora la discriminación entre conceptos, fomenta la memoria a largo plazo y promueve un aprendizaje más profundo.</p>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque">
-        <h2>¿Cómo aplicarlo?</h2>
-        <ul>
-          <li>Elige 2 o más temas relacionados para estudiar.</li>
-          <li>Alterna entre ellos en intervalos de tiempo definidos.</li>
-          <li>Realiza ejercicios que involucren más de un tema al mismo tiempo.</li>
-          <li>Evita estudiar largos periodos de un solo tema de forma aislada.</li>
-        </ul>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque">
-        <h2><strong>✔️ Ventajas:</strong></h2>
-        <ul>
-          <li>Mejora la retención a largo plazo.</li>
-          <li>Desarrolla habilidades para aplicar conceptos en distintos contextos.</li>
-          <li>Fomenta conexiones entre ideas distintas.</li>
-        </ul>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque">
-        <h2><strong>❌ Desventajas:</strong></h2>
-        <ul>
-          <li>Puede generar confusión si no se organiza bien.</li>
-          <li>No es útil para temas que requieren dominio progresivo lineal.</li>
-        </ul>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque tecnica-final">
-        <h2>¿En qué carreras se recomienda?</h2>
-        <p>Es especialmente efectiva en áreas que requieren resolución de problemas y aplicación práctica:</p>
-        <ul class="carreras-lista">
-          <li>Matemáticas</li>
-          <li>Ingeniería</li>
-          <li>Física</li>
-          <li>Programación</li>
-          <li>Economía</li>
-          <li>Ciencias Naturales</li>
-        </ul>
-      </section>
-  
-      <div class="tecnica-ejemplo">
-        <img src="media/intercalado.jpg" alt="Ejemplo Estudio Intercalado">
-        <p>Ejemplo visual de cómo alternar entre temas para reforzar el aprendizaje.</p>
+      <!-- Sección de contenido -->
+      <div class="tecnica-info">
+        <section class="tecnica-bloque">
+          <h2>¿En qué consiste?</h2>
+          <p>
+            El Estudio Intercalado es una técnica que consiste en alternar
+            diferentes temas o habilidades durante una misma sesión de estudio,
+            en lugar de enfocarse en una sola área por mucho tiempo. A
+            diferencia del estudio bloqueado (centrado en un solo tema), el
+            intercalado mejora la discriminación entre conceptos, fomenta la
+            memoria a largo plazo y promueve un aprendizaje más profundo.
+          </p>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque">
+          <h2>¿Cómo aplicarlo?</h2>
+          <ul>
+            <li>Elige 2 o más temas relacionados para estudiar.</li>
+            <li>Alterna entre ellos en intervalos de tiempo definidos.</li>
+            <li>
+              Realiza ejercicios que involucren más de un tema al mismo tiempo.
+            </li>
+            <li>
+              Evita estudiar largos periodos de un solo tema de forma aislada.
+            </li>
+          </ul>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque">
+          <h2><strong>✔️ Ventajas:</strong></h2>
+          <ul>
+            <li>Mejora la retención a largo plazo.</li>
+            <li>
+              Desarrolla habilidades para aplicar conceptos en distintos
+              contextos.
+            </li>
+            <li>Fomenta conexiones entre ideas distintas.</li>
+          </ul>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque">
+          <h2><strong>❌ Desventajas:</strong></h2>
+          <ul>
+            <li>Puede generar confusión si no se organiza bien.</li>
+            <li>
+              No es útil para temas que requieren dominio progresivo lineal.
+            </li>
+          </ul>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque tecnica-final">
+          <h2>¿En qué carreras se recomienda?</h2>
+          <p>
+            Es especialmente efectiva en áreas que requieren resolución de
+            problemas y aplicación práctica:
+          </p>
+          <ul class="carreras-lista">
+            <li>Matemáticas</li>
+            <li>Ingeniería</li>
+            <li>Física</li>
+            <li>Programación</li>
+            <li>Economía</li>
+            <li>Ciencias Naturales</li>
+          </ul>
+        </section>
+
+        <div class="tecnica-ejemplo">
+          <img src="media/intercalado.jpg" alt="Ejemplo Estudio Intercalado" />
+          <p>
+            Ejemplo visual de cómo alternar entre temas para reforzar el
+            aprendizaje.
+          </p>
+        </div>
       </div>
     </div>
-  </div>  
-  
-</body>
+  </body>
 </html>

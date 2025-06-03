@@ -2,16 +2,70 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CONCENTRA</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Xxxxx..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Xxxxx..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // Configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+    authDomain: "concentra-656aa.firebaseapp.com",
+    projectId: "concentra-656aa",
+    storageBucket: "concentra-656aa.appspot.com",
+    messagingSenderId: "336932376021",
+    appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+    measurementId: "G-SQN0RS051N"
+  };
+
+  // Inicializar Firebase (solo si no ha sido inicializado antes)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  // Control de sesión
+  firebase.auth().onAuthStateChanged(user => {
+    const barra = document.getElementById('barra-usuario');
+
+    if (barra) {
+      if (user) {
+        const nombre = user.displayName || user.email;
+        barra.innerHTML = `
+          <span style="margin-right: 10px;">Bienvenido, <a href="perfil.html" style="text-decoration: underline;">${nombre}</a></span>
+          <button id="cerrarSesion" class="btn btn-sm btn-outline-danger">Salir</button>
+        `;
+        document.getElementById('cerrarSesion').onclick = () => {
+          firebase.auth().signOut().then(() => {
+            window.location.href = "index.html";
+          });
+        };
+      } else {
+        if (!window.location.href.includes("index.html")) {
+          window.location.href = "index.html"; // Redirige si no está logueado
+        }
+      }
+    }
+  });
+</script>
+
   </head>
   <body>
+  </div>
     <div class="separadores"></div>
     <div id="bannerprincipal">
       <div class="imagenprincipal">
@@ -23,30 +77,135 @@
     <div class="separadores">
       <div class="menu-principal">
         <ul class="menu">
+          <li class="logo-inicio">
+            <a href="inicio.html">
+              <img src="media/logo.png" alt="Ir al inicio" />
+            </a>
+          </li>
           <li class="dropdown">
-            <a href="#"><i class="fas fa-book"></i> Métodos de Estudio <span class="arrow">-></span></a>
+            <a href="#"
+              ><i class="fas fa-book"></i> Métodos de Estudio
+              <span class="arrow">-></span></a
+            >
             <ul class="submenu">
               <li><a href="mapamental.html">Mapas Mentales</a></li>
               <li><a href="resumenes.html">Resumenes</a></li>
-              <li><a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a></li>
+              <li>
+                <a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a>
+              </li>
               <li><a href="pomodoro.html">Técnica Pomodoro</a></li>
-              <li><a href="auto.html">Autoevaluación (Test o Cuestionarios)</a></li>
+              <li>
+                <a href="auto.html">Autoevaluación (Test o Cuestionarios)</a>
+              </li>
               <li><a href="feyman.html">Método Feynman</a></li>
               <li><a href="activa.html">Lectura Activa (SQ3R o PQRST)</a></li>
-              <li><a href="intercalado.html">Estudio Intercalado (Interleaving)</a></li>
+              <li>
+                <a href="intercalado.html"
+                  >Estudio Intercalado (Interleaving)</a
+                >
+              </li>
             </ul>
           </li>
           <li>
-            <a href="cronometro.html"><i class="fas fa-clock"></i> Cronómetro</a>
+            <a href="cronometro.html"
+              ><i class="fas fa-clock"></i> Cronómetro</a
+            >
           </li>
           <li>
-            <a href="quienesomos.html"><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a>
+            <a href="quienesomos.html"
+              ><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a
+            >
           </li>
+          <li id="barra-usuario" style="margin-left: auto;"></li>
         </ul>
       </div>
     </div>
-    <div class="contenidoprincipal">
-      <p>hola buenos dias</p>
-    </div>
+    <section class="inicio-container">
+      <div class="hero">
+  <div class="hero-content">
+    <h1>Bienvenido a Tu Portal de Técnicas de Estudio</h1>
+    <p>
+      Explora estrategias comprobadas, herramientas prácticas y enfoques
+      innovadores para estudiar mejor y más inteligente.
+    </p>
+  </div>
+</div>
+
+      <div id="descubre" class="secciones">
+        <div class="card">
+          <h2> ¿Qué ofrecemos?</h2>
+          <p>
+            Una guía interactiva con métodos efectivos para mejorar memoria,
+            comprensión y organización personal.
+          </p>
+        </div>
+        <div class="card">
+          <h2> Técnicas para todos</h2>
+          <p>
+            Desde estudiantes de ingeniería hasta arte, nuestras técnicas se
+            adaptan a tu perfil.
+          </p>
+        </div>
+        <div class="card">
+          <h2> Herramientas prácticas</h2>
+          <p>
+            Incluye cronómetro Pomodoro, fichas digitales, mapas mentales
+            interactivos y más.
+          </p>
+        </div>
+      </div>
+
+      <div class="beneficios">
+  <h2>¿Por qué usar técnicas de estudio?</h2>
+  <ul>
+    <li>✔️ Aprendes en menos tiempo.</li>
+    <li>✔️ Reduces el estrés previo a los exámenes.</li>
+    <li>✔️ Te vuelves más organizado y eficiente.</li>
+    <li>✔️ Aumentas tu confianza académica.</li>
+    <li>✔️ Recuerdas más y mejor lo aprendido.</li>
+  </ul>
+</div>
+
+<div class="testimonios">
+  <h2>Lo que dicen nuestros usuarios:</h2>
+  <div class="testimonio">
+    <p>"Nunca pensé que estudiar podría ser tan eficiente. La técnica Pomodoro me salvó el semestre."</p>
+    <span>– Valentina, estudiante de Psicología</span>
+  </div>
+  <div class="testimonio">
+    <p>"Gracias al Método Feynman, por fin entendí física cuántica sin llorar."</p>
+    <span>– Carlos, estudiante de Ingeniería</span>
+  </div>
+  <div class="testimonio">
+    <p>"Usar flashcards digitalizadas fue un antes y un después en mi carrera de Derecho."</p>
+    <span>– Julia, estudiante de Derecho</span>
+  </div>
+  <div class="cita-final">
+    <p>“Estudiar no es solo memorizar, es transformar la información en conocimiento duradero.”</p>
+  </div>
+</div>
+<section class="tips">
+  <h2>Tips rápidos de estudio</h2>
+  <ul>
+    <li>🕒 Estudia en bloques de 25 minutos para mantenerte enfocado.</li>
+    <li>📖 Reescribe la información con tus propias palabras.</li>
+    <li>🧠 Cambia de lugar para activar diferentes zonas del cerebro.</li>
+    <li>🌲 Hidrátate y descansa entre sesiones.</li>
+  </ul>
+</section>
+
+<section class="explora">
+  <h2>Explora más técnicas</h2>
+  <p>¿Ya probaste el Pomodoro? Entonces quizás te funcione la Técnica de Feynman o la Lectura Activa. Navega por nuestro menú y encuentra la que mejor se adapta a tu estilo.</p>
+  <a href="auto.html" class="btn-explora">Ir a cualquier método de estudio</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>“Aprender es descubrir lo que ya sabes. Enseñar es recordar a otros que lo saben tanto como tú.”</p>
+    <p class="equipo">Hecho por el equipo de Concentra 💡</p>
+    <a href="mailto:contacto@concentra.com" class="contacto">¿Tienes dudas? Contáctanos</a>
+  </div>
+</footer>
   </body>
 </html>

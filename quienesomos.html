@@ -6,12 +6,62 @@
   <title>¿Quiénes Somos?</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // Configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+    authDomain: "concentra-656aa.firebaseapp.com",
+    projectId: "concentra-656aa",
+    storageBucket: "concentra-656aa.appspot.com",
+    messagingSenderId: "336932376021",
+    appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+    measurementId: "G-SQN0RS051N"
+  };
+
+  // Inicializar Firebase (solo si no ha sido inicializado antes)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  // Control de sesión
+  firebase.auth().onAuthStateChanged(user => {
+    const barra = document.getElementById('barra-usuario');
+
+    if (barra) {
+      if (user) {
+        const nombre = user.displayName || user.email;
+        barra.innerHTML = `
+          <span style="margin-right: 10px;">Bienvenido, <a href="perfil.html" style="text-decoration: underline;">${nombre}</a></span>
+          <button id="cerrarSesion" class="btn btn-sm btn-outline-danger">Salir</button>
+        `;
+        document.getElementById('cerrarSesion').onclick = () => {
+          firebase.auth().signOut().then(() => {
+            window.location.href = "index.html";
+          });
+        };
+      } else {
+        if (!window.location.href.includes("index.html")) {
+          window.location.href = "index.html";
+        }
+      }
+    }
+  });
+</script>
 </head>
 <body>
 
   <!-- Menú principal -->
   <div class="menu-principal">
     <ul class="menu">
+      <li class="logo-inicio">
+            <a href="inicio.html">
+              <img src="media/logo.png" alt="Ir al inicio" />
+            </a>
+          </li>
       <li class="dropdown">
         <a href="#"><i class="fas fa-book"></i> Métodos de Estudio <span class="arrow">→</span></a>
         <ul class="submenu">
@@ -27,6 +77,7 @@
       </li>
       <li><a href="cronometro.html"><i class="fas fa-clock"></i> Cronómetro</a></li>
       <li><a href="quienes-somos.html"><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a></li>
+      <li id="barra-usuario" style="margin-left: auto;"></li>
     </ul>
   </div>
 

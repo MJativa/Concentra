@@ -1,128 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CONCENTRA</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CONCENTRA</title>
 
-  <!-- Bootstrap -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link
+    <!-- Bootstrap -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
       href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
       rel="stylesheet"
     />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-</head>
-<body>
-  <div class="contenedorregistro">
-    <div>
-      <h1 class="logo">Bienvenido a <br>CONCENTRA</h1>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <div class="usuario-superior-derecha" id="usuarioLogueado"></div>
+    <div class="contenedorregistro">
+      <div>
+        <h1 class="logo">Bienvenido a <br />CONCENTRA</h1>
+      </div>
+      <div class="formularioinicio">
+        <form>
+          <label for="usuario">Nombre de Usuario:</label><br />
+          <input type="text" id="usuario" name="usuario" /><br />
+          <label for="contrasena">Contraseña:</label><br />
+          <input type="text" id="contrasena" name="contrasena" />
+        </form>
+      </div>
+      <!-- Botones de login -->
+      <div class="text-center mt-4">
+        <button id="loginConcentra" class="botonesregistro">
+          Iniciar sesión
+        </button>
+        <br />
+        <br />
+        <button id="loginGoogle" class="botonesregistro">
+          <i class="fab fa-google" style="margin-right: 10px"></i>Iniciar sesión
+          con Google
+        </button>
+        <br />
+      </div>
+
+      <!-- Botón de logout -->
+      <div class="text-center mt-4">
+        <button id="logout" class="btn btn-danger" style="display: none">
+          Cerrar sesión
+        </button>
+      </div>
     </div>
-    <div class="formularioinicio">
-      <form>
-        <label for="usuario">Nombre de Usuario:</label><br>
-        <input type="text" id="usuario" name="usuario"><br>
-        <label for="contrasena">Contraseña:</label><br>
-        <input type="text" id="contrasena" name="contrasena">
-      </form>
-    </div>
-    <!-- Botones de login -->
-    <div class="text-center mt-4">
-      <button id="loginConcentra" class="botonesregistro">Iniciar sesión</button>
-      <br>
-      <br>
-      <button id="loginGoogle" class="botonesregistro">
-        <i class="fab fa-google" style="margin-right: 10px;"></i>Iniciar sesión con Google
-      </button>
-      <br>
-    </div>
 
-    <!-- Botón de logout -->
-    <div class="text-center mt-4">
-      <button id="logout" class="btn btn-danger" style="display: none;">Cerrar sesión</button>
-    </div>
-  </div>
+    <footer class="footer">
+      <div class="footer-content">
+        <p>
+          “Lo maravilloso de aprender algo es que nadie puede arrebatárnoslo” -
+          B.B King
+        </p>
+        <p class="equipo">© Concentra</p>
+        <a href="mailto:contacto@concentra.com" class="contacto"
+          >¿Problemas al iniciar sesión? Contáctanos</a
+        >
+      </div>
+    </footer>
 
-  <script>
-    // Configuración de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
-      authDomain: "concentra-656aa.firebaseapp.com",
-      projectId: "concentra-656aa",
-      storageBucket: "concentra-656aa.appspot.com",
-      messagingSenderId: "336932376021",
-      appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
-      measurementId: "G-SQN0RS051N"
-    };
+    <script>
+      // Configuración de Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+        authDomain: "concentra-656aa.firebaseapp.com",
+        projectId: "concentra-656aa",
+        storageBucket: "concentra-656aa.appspot.com",
+        messagingSenderId: "336932376021",
+        appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+        measurementId: "G-SQN0RS051N",
+      };
 
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+      // Inicializar Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
 
-    // Login con Google
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    document.getElementById('loginGoogle').onclick = () => {
-      auth.signInWithPopup(googleProvider)
-        .then(result => {
-          const user = result.user;
-          alert('Bienvenido ' + user.displayName);
-        })
-        .catch(error => {
-          alert('Error con Google: ' + error.message);
-        });
-    };
+      // Login con Google
+      const googleProvider = new firebase.auth.GoogleAuthProvider();
+      document.getElementById("loginGoogle").onclick = () => {
+        auth
+          .signInWithPopup(googleProvider)
+          .then((result) => {
+            const user = result.user;
+            alert("Bienvenido " + user.displayName);
+                window.location.href = "inicio.html"; // Redirige al inicio
+          })
+          .catch((error) => {
+            alert("Error con Google: " + error.message);
+          });
+      };
 
-    // Mostrar formulario login Email
-    document.getElementById('loginEmail').onclick = () => {
-      document.getElementById('loginEmailForm').style.display = 'block';
-    };
+      // Mostrar formulario login Email
+      document.getElementById("loginEmail").onclick = () => {
+        document.getElementById("loginEmailForm").style.display = "block";
+      };
 
-    // Login con Email/Password
-    document.getElementById('loginWithEmailBtn').onclick = () => {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      // Login con Email/Password
+      document.getElementById("loginWithEmailBtn").onclick = () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          const user = userCredential.user;
-          alert('Bienvenido ' + (user.displayName || user.email));
-        })
-        .catch(error => {
-          alert('Error con Email: ' + error.message);
-        });
-    };
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            alert("Bienvenido " + (user.displayName || user.email));
+          })
+          .catch((error) => {
+            alert("Error con Email: " + error.message);
+          });
+      };
 
-    // Logout
-    document.getElementById('logout').onclick = () => {
-      auth.signOut()
-        .then(() => {
-          alert('Sesión cerrada.');
-        })
-        .catch(error => {
-          alert('Error al cerrar sesión: ' + error.message);
-        });
-    };
+      // Logout
+      document.getElementById("logout").onclick = () => {
+        auth
+          .signOut()
+          .then(() => {
+            alert("Sesión cerrada.");
+          })
+          .catch((error) => {
+            alert("Error al cerrar sesión: " + error.message);
+          });
+      };
 
-    // Cambiar visibilidad de botones según estado de sesión
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        document.getElementById('loginGoogle').style.display = 'none';
-        document.getElementById('loginEmail').style.display = 'none';
-        document.getElementById('loginEmailForm').style.display = 'none';
-        document.getElementById('logout').style.display = 'inline-block';
-      } else {
-        document.getElementById('loginGoogle').style.display = 'inline-block';
-        document.getElementById('loginEmail').style.display = 'inline-block';
-        document.getElementById('logout').style.display = 'none';
-      }
-    });
-  </script>
-</body>
+      // Cambiar visibilidad de botones según estado de sesión
+      auth.onAuthStateChanged((user) => {
+        const nombreDiv = document.getElementById("usuarioLogueado");
+        if (user) {
+          // Guardamos nombre en localStorage
+          const nombre = user.displayName || user.email;
+          localStorage.setItem("usuarioNombre", nombre);
+
+          // Mostrar el nombre con enlace
+          if (nombreDiv) {
+            nombreDiv.innerHTML = `<a href="perfil.html">${nombre}</a>`;
+          }
+
+          // Mostrar / ocultar botones
+          document.getElementById("loginGoogle").style.display = "none";
+          document.getElementById("logout").style.display = "inline-block";
+        } else {
+          localStorage.removeItem("usuarioNombre");
+          if (nombreDiv) {
+            nombreDiv.innerHTML = "";
+          }
+
+          document.getElementById("loginGoogle").style.display = "inline-block";
+          document.getElementById("logout").style.display = "none";
+        }
+      });
+    </script>
+  </body>
 </html>

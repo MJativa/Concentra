@@ -60,3 +60,22 @@ function salirPantallaCompleta() {
   else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
   else if (document.msExitFullscreen) document.msExitFullscreen();
 }
+
+firebase.auth().onAuthStateChanged(user => {
+  const barra = document.getElementById('barra-usuario');
+
+  if (user && barra) {
+    const nombre = user.displayName || user.email;
+    barra.innerHTML = `
+      <div class="nombre-usuario" title="${nombre}">👤 ${nombre}</div>
+      <button class="boton-salir" id="cerrarSesion">Cerrar sesión</button>
+    `;
+
+    document.getElementById('cerrarSesion').onclick = () => {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "index.html";
+      });
+    };
+  }
+});
+

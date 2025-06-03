@@ -1,101 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/your-kit.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-  <!-- Menú principal -->
-  <div class="menu-principal">
-    <ul class="menu">
-      <li class="dropdown">
-        <a href="#"><i class="fas fa-book"></i> Métodos de Estudio <span class="arrow">→</span></a>
-        <ul class="submenu">
+    <script>
+      // Configuración de Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyAzCRen2Jwk_9VNg9erG06lPOcuWF8VYw4",
+        authDomain: "concentra-656aa.firebaseapp.com",
+        projectId: "concentra-656aa",
+        storageBucket: "concentra-656aa.appspot.com",
+        messagingSenderId: "336932376021",
+        appId: "1:336932376021:web:0f68f60bc80682cc8ac15c",
+        measurementId: "G-SQN0RS051N",
+      };
+
+      // Inicializar Firebase (solo si no ha sido inicializado antes)
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      // Control de sesión
+      firebase.auth().onAuthStateChanged((user) => {
+        const barra = document.getElementById("barra-usuario");
+
+        if (barra) {
+          if (user) {
+            const nombre = user.displayName || user.email;
+            barra.innerHTML = `
+          <span style="margin-right: 10px;">Bienvenido, <a href="perfil.html" style="text-decoration: underline;">${nombre}</a></span>
+          <button id="cerrarSesion" class="btn btn-sm btn-outline-danger">Salir</button>
+        `;
+            document.getElementById("cerrarSesion").onclick = () => {
+              firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                  window.location.href = "index.html";
+                });
+            };
+          } else {
+            if (!window.location.href.includes("index.html")) {
+              window.location.href = "index.html";
+            }
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Menú principal -->
+    <div class="menu-principal">
+      <ul class="menu">
+        <li class="logo-inicio">
+          <a href="inicio.html">
+            <img src="media/logo.png" alt="Ir al inicio" />
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#"
+            ><i class="fas fa-book"></i> Métodos de Estudio
+            <span class="arrow">→</span></a
+          >
+          <ul class="submenu">
             <li><a href="mapamental.html">Mapa Mental</a></li>
             <li><a href="resumenes.html">Resumenes</a></li>
-            <li><a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a></li>
+            <li>
+              <a href="fichaestudio.html">Fichas de Estudio (Flashcards)</a>
+            </li>
             <li><a href="pomodoro.html">Técnica Pomodoro</a></li>
-            <li><a href="auto.html">Autoevaluación (Test o Cuestionarios)</a></li>
+            <li>
+              <a href="auto.html">Autoevaluación (Test o Cuestionarios)</a>
+            </li>
             <li><a href="feyman.html">Método Feynman</a></li>
-            <li><a href="intercalado.html">Estudio Intercalado (Interleaving)</a></li>
-        </ul>
-      </li>
-      <li><a href="cronometro.html"><i class="fas fa-clock"></i> Cronómetro</a></li>
-      <li><a href="quienesomos.html"><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a></li>
-    </ul>
-  </div>
+            <li>
+              <a href="intercalado.html">Estudio Intercalado (Interleaving)</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="cronometro.html"><i class="fas fa-clock"></i> Cronómetro</a>
+        </li>
+        <li>
+          <a href="quienesomos.html"
+            ><i class="fas fa-lightbulb"></i> ¿Quiénes Somos?</a
+          >
+        </li>
+        <li id="barra-usuario" style="margin-left: auto"></li>
+      </ul>
+    </div>
 
-<!-- Contenido principal - Lectura Activa -->
-<div class="tecnica-container">
+    <!-- Contenido principal - Lectura Activa -->
+    <div class="tecnica-container">
+      <!-- Título -->
+      <h2 class="tecnica-title">Lectura Activa (SQ3R o PQRST)</h2>
 
-    <!-- Título -->
-    <h2 class="tecnica-title">Lectura Activa (SQ3R o PQRST)</h2>
-  
-    <!-- Sección de contenido -->
-    <div class="tecnica-info">
-      <section class="tecnica-bloque">
-        <h2>¿En qué consiste?</h2>
-        <p>La Lectura Activa es una técnica de estudio que busca involucrar al lector con el texto para mejorar la comprensión, memorización y análisis crítico. SQ3R (Survey, Question, Read, Recite, Review) y PQRST (Preview, Question, Read, Summary, Test) son dos de sus métodos más conocidos, y ambos promueven un enfoque metódico para procesar información de forma profunda.</p>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque">
-        <h2>¿Cómo aplicarlo?</h2>
-        <ul>
-          <li><strong>Explorar (Survey / Preview):</strong> Revisa títulos, subtítulos, imágenes y resúmenes.</li>
-          <li><strong>Cuestionar (Question):</strong> Formula preguntas antes de leer, como ¿qué quiero aprender?</li>
-          <li><strong>Leer (Read):</strong> Lee activamente buscando responder tus preguntas.</li>
-          <li><strong>Resumir o Recitar (Recite / Summary):</strong> Expón con tus palabras lo aprendido.</li>
-          <li><strong>Revisar o Evaluar (Review / Test):</strong> Repasa y verifica la comprensión del contenido.</li>
-        </ul>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque">
-        <h2><strong>✔️ Ventajas:</strong></h2>
-        <ul>
-          <li>Fomenta una comprensión profunda del texto.</li>
-          <li>Reduce el estudio pasivo o superficial.</li>
-          <li>Mejora la capacidad de análisis y reflexión.</li>
-        </ul>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque">
-        <h2><strong>❌ Desventajas:</strong></h2>
-        <ul>
-          <li>Requiere más tiempo y concentración que la lectura común.</li>
-          <li>Puede ser difícil de aplicar en textos muy técnicos o con poco contexto visual.</li>
-        </ul>
-      </section>
-  
-      <br>
-  
-      <section class="tecnica-bloque tecnica-final">
-        <h2>¿En qué carreras se recomienda?</h2>
-        <p>Es útil en muchas áreas, especialmente en:</p>
-        <ul class="carreras-lista">
-          <li>Derecho</li>
-          <li>Psicología</li>
-          <li>Ciencias Sociales</li>
-          <li>Historia</li>
-          <li>Filosofía</li>
-          <li>Literatura</li>
-        </ul>
-      </section>
-  
-      <div class="tecnica-ejemplo">
-        <img src="media/lecturactiva.jpg" alt="Ejemplo Lectura Activa">
-        <p>Ejemplo visual de cómo organizar la técnica de Lectura Activa paso a paso.</p>
+      <!-- Sección de contenido -->
+      <div class="tecnica-info">
+        <section class="tecnica-bloque">
+          <h2>¿En qué consiste?</h2>
+          <p>
+            La Lectura Activa es una técnica de estudio que busca involucrar al
+            lector con el texto para mejorar la comprensión, memorización y
+            análisis crítico. SQ3R (Survey, Question, Read, Recite, Review) y
+            PQRST (Preview, Question, Read, Summary, Test) son dos de sus
+            métodos más conocidos, y ambos promueven un enfoque metódico para
+            procesar información de forma profunda.
+          </p>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque">
+          <h2>¿Cómo aplicarlo?</h2>
+          <ul>
+            <li>
+              <strong>Explorar (Survey / Preview):</strong> Revisa títulos,
+              subtítulos, imágenes y resúmenes.
+            </li>
+            <li>
+              <strong>Cuestionar (Question):</strong> Formula preguntas antes de
+              leer, como ¿qué quiero aprender?
+            </li>
+            <li>
+              <strong>Leer (Read):</strong> Lee activamente buscando responder
+              tus preguntas.
+            </li>
+            <li>
+              <strong>Resumir o Recitar (Recite / Summary):</strong> Expón con
+              tus palabras lo aprendido.
+            </li>
+            <li>
+              <strong>Revisar o Evaluar (Review / Test):</strong> Repasa y
+              verifica la comprensión del contenido.
+            </li>
+          </ul>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque">
+          <h2><strong>✔️ Ventajas:</strong></h2>
+          <ul>
+            <li>Fomenta una comprensión profunda del texto.</li>
+            <li>Reduce el estudio pasivo o superficial.</li>
+            <li>Mejora la capacidad de análisis y reflexión.</li>
+          </ul>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque">
+          <h2><strong>❌ Desventajas:</strong></h2>
+          <ul>
+            <li>Requiere más tiempo y concentración que la lectura común.</li>
+            <li>
+              Puede ser difícil de aplicar en textos muy técnicos o con poco
+              contexto visual.
+            </li>
+          </ul>
+        </section>
+
+        <br />
+
+        <section class="tecnica-bloque tecnica-final">
+          <h2>¿En qué carreras se recomienda?</h2>
+          <p>Es útil en muchas áreas, especialmente en:</p>
+          <ul class="carreras-lista">
+            <li>Derecho</li>
+            <li>Psicología</li>
+            <li>Ciencias Sociales</li>
+            <li>Historia</li>
+            <li>Filosofía</li>
+            <li>Literatura</li>
+          </ul>
+        </section>
+
+        <div class="tecnica-ejemplo">
+          <img src="media/lecturactiva.jpg" alt="Ejemplo Lectura Activa" />
+          <p>
+            Ejemplo visual de cómo organizar la técnica de Lectura Activa paso a
+            paso.
+          </p>
+        </div>
       </div>
     </div>
-  </div>  
-  
-</body>
+  </body>
 </html>

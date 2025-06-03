@@ -1,5 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #a1152c;
+}
 
 * {
   margin: 0;
@@ -8,23 +16,36 @@
   font-family: Merriweather, serif;
 }
 
+.logo-inicio img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.logo-inicio img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .container {
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  height: 100vh; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   text-align: center;
 }
 
 .formularioinicio form {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn {
-  width: 200px; 
+  width: 200px;
 }
 
 .logo {
@@ -33,76 +54,79 @@
   margin-bottom: 20px;
 }
 
-#loginConcentra{
-  background-color: #A51C30;
+#loginConcentra {
+  background-color: #a51c30;
 }
 
 .contenedorregistro {
-  border: 2px solid #A51C30;       
-  border-radius: 12px;             
-  padding: 30px;                  
-  background-color: #f0c7a6;       
-  max-width: 400px;                
-  margin: 50px auto;              
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+  border: 2px solid #a51c30;
+  border-radius: 12px;
+  padding: 30px;
+  background-color: #f0c7a6;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-  width: 100%; 
-  padding: 10px; 
-  margin: 10px 0; 
-  border: 2px solid #ccc; 
-  border-radius: 8px; 
-  background-color: #f9f9f9; 
-  font-size: 16px; 
-  transition: all 0.3s ease; 
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
-  border-color: #A51C30; 
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #a51c30;
   box-shadow: 0 0 8px rgba(165, 28, 48, 0.7);
   outline: none;
 }
 
 label {
   font-size: 14px;
-  color: #555; 
+  color: #555;
   font-weight: bold;
   margin-bottom: 5px;
-  display: block; 
+  display: block;
 }
 
 #loginGoogle {
-  background-color: rgb(3, 70, 255); 
-  color: white; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  cursor: pointer; 
-  border-radius: 5px; 
-  transition: all 0.3s ease; 
+  background-color: rgb(3, 70, 255);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 #loginConcentra {
-  background-color: #A51C30; 
-  color: white; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  cursor: pointer; 
-  border-radius: 5px; 
-  transition: all 0.3s ease; 
+  background-color: #a51c30;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .botonesregistro:hover {
-  background-color: #D84A5B; 
-  transform: scale(1.1); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  background-color: #d84a5b;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 body {
-  background-color: #E1C6A8;
+  background-color: #e1c6a8;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -112,25 +136,25 @@ h1 {
   font-style: italic;
   text-align: center;
   color: black;
-  margin-bottom: 200px;                
+  margin-bottom: 200px;
   text-align: center;
   padding: 20px;
   border-radius: 12px;
 }
 
-#bannerprincipal{
+#bannerprincipal {
   position: relative;
   width: 100%;
   height: 450px;
   overflow: hidden;
 }
 
-.imagenprincipal{
+.imagenprincipal {
   background-image: url("media/Estudio.jpg");
-  background-size: cover;       
-  background-position: center;  
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;                
+  height: 100vh;
   width: 100%;
   position: relative;
   display: flex;
@@ -138,15 +162,248 @@ h1 {
   justify-content: center;
 }
 
-.separadores{
-  background-color: #A51C30;
+.separadores {
+  background-color: #a51c30;
   height: 50px;
   width: 100%;
   margin-top: auto;
 }
 
+.hero {
+  background: linear-gradient(
+    to bottom right,
+    #f5f5dc,
+    #f4e1c1
+  ); /* beige + arena */
+  padding: 100px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px; /* Ajusta según la altura real del menú */
+}
+
+.hero-content {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: center;
+  color: #3d3d3d; /* gris oscuro suave */
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: #a1152c; /* rojo Harvard */
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+/* Sección de tarjetas */
+.secciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.beneficios {
+  text-align: center;
+  background-color: #fdfefe;
+  padding: 60px 20px;
+}
+
+.beneficios h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+.beneficios ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.beneficios li {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #34495e;
+}
+
+.testimonios {
+  background: #f0f9ff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonios h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+.testimonio {
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.testimonio:hover {
+  transform: translateY(-5px);
+}
+
+.testimonio p {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.testimonio span {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.cita-final p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #1a5276;
+  margin-top: 50px;
+}
+
+.tips,
+.explora {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+}
+
+.tips h2,
+.explora h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+.tips ul {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.tips li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+.explora p {
+  max-width: 700px;
+  margin: 0 auto 25px auto;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.btn-explora {
+  background-color: #a51c30;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-explora:hover {
+  background-color: #dd233f;
+}
+
+.footer {
+  background: #721321;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.95rem;
+}
+
+.footer-content p {
+  margin: 10px 0;
+}
+
+.equipo {
+  font-style: italic;
+  color: #dcdcdc;
+}
+
+.contacto {
+  display: inline-block;
+  margin-top: 10px;
+  color: #85c1e9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contacto:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 .menu-principal {
-  background-color: #A51C30;
+  background-color: #a51c30;
   padding: 10px 30px;
   z-index: 10;
   display: flex;
@@ -171,7 +428,7 @@ h1 {
   font-weight: 600;
   display: inline-block;
   position: relative;
-  padding: 10px 0; 
+  padding: 10px 0;
   transition: all 0.3s ease;
   white-space: nowrap;
 }
@@ -213,7 +470,7 @@ h1 {
   padding: 10px 0;
   border-radius: 6px;
   min-width: 170px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   opacity: 0;
   pointer-events: none;
   transform: translateY(10px);
@@ -245,10 +502,10 @@ h1 {
 }
 
 .submenu li a:hover {
-  background-color: #A51C30;
+  background-color: #a51c30;
 }
 
-.contenidoprincipal{
+.contenidoprincipal {
   background-color: sandybrown;
   margin-top: 25px;
 }
@@ -284,7 +541,7 @@ h1 {
 
 .cr-nav-list li a:hover,
 .cr-nav-list li a.active {
-  background-color: #A51C30;
+  background-color: #a51c30;
   color: white;
 }
 
@@ -292,8 +549,8 @@ h1 {
   margin: 0;
   padding: 0;
   height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  background-image: url('media/Fondo Cronometro.gif'); /* Imagen negra */
+  font-family: "Segoe UI", sans-serif;
+  background-image: url("media/Fondo Cronometro.gif"); /* Imagen negra */
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -304,7 +561,12 @@ h1 {
 
 /* 📦 Contenedor principal con transparencia suave */
 .cr-wrapper {
-  background-color: rgba(20, 20, 20, 0.85); /* Más opaco y uniforme con fondo oscuro */
+  background-color: rgba(
+    20,
+    20,
+    20,
+    0.85
+  ); /* Más opaco y uniforme con fondo oscuro */
   padding: 40px 50px;
   border-radius: 16px;
   text-align: center;
@@ -341,7 +603,7 @@ h1 {
 
 /* ⌛ Estilo de botones de tiempo */
 .cr-time-btn {
-  background-color: #A51C30;
+  background-color: #a51c30;
   border: none;
   padding: 12px 20px;
   color: white;
@@ -391,7 +653,7 @@ h1 {
 }
 
 .qs-panel h2 {
-  color: #A51C30;
+  color: #a51c30;
   font-size: 1.8rem;
   margin-bottom: 15px;
 }
@@ -417,7 +679,7 @@ h1 {
 .qs-equipo h2 {
   font-size: 2rem;
   margin-bottom: 30px;
-  color: #A51C30;
+  color: #a51c30;
 }
 
 .qs-miembros {
@@ -450,7 +712,7 @@ h1 {
 .qs-frase {
   text-align: center;
   padding: 40px 20px;
-  background-color: #A51C30;
+  background-color: #a51c30;
   color: white;
   font-size: 1.4rem;
   font-style: italic;
@@ -463,7 +725,7 @@ h1 {
 }
 
 .btn-contacto {
-  background-color: #A51C30;
+  background-color: #a51c30;
   color: white;
   padding: 12px 25px;
   border-radius: 8px;
@@ -481,7 +743,7 @@ h1 {
 .tecnica-body {
   margin: 0;
   padding: 0;
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   background-color: #f6f7fb;
   color: #333;
 }
@@ -509,7 +771,7 @@ h1 {
   text-align: center;
   font-size: 2.4rem;
   margin-bottom: 5px;
-  color: #A51C30;
+  color: #a51c30;
 }
 
 /* Nuevo contenedor para centrar los elementos superiores */
@@ -530,7 +792,7 @@ h1 {
 .tecnica-title {
   font-size: 2.4rem;
   margin-bottom: 10px; /* Reduce espacio */
-  color: #A51C30;
+  color: #a51c30;
   text-align: center;
 }
 
@@ -538,8 +800,8 @@ h1 {
   font-size: 1.4rem;
   margin-top: 30px;
   margin-bottom: 10px;
-  color: #A51C30;
-  border-left: 5px solid #A51C30;
+  color: #a51c30;
+  border-left: 5px solid #a51c30;
   padding-left: 12px;
 }
 
@@ -551,11 +813,11 @@ h1 {
   align-items: center; /* Centra imagen + texto */
   justify-content: center;
   gap: 15px;
-  margin: 20px auto 10px;  /* Menos separación hacia el título */
+  margin: 20px auto 10px; /* Menos separación hacia el título */
   background-color: #f3f3f3;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   max-width: 400px; /* Evita que se extienda mucho */
   text-align: center; /* Centra el texto */
 }
@@ -565,7 +827,7 @@ h1 {
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #A51C30;
+  border: 3px solid #a51c30;
 }
 
 .tecnica-autor-info {
@@ -588,16 +850,16 @@ h1 {
   background-color: #fafafa;
   padding: 20px;
   margin-top: 25px;
-  border-left: 4px solid #A51C30;
+  border-left: 4px solid #a51c30;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .tecnica-carreras strong {
   display: block;
   margin-bottom: 10px;
   font-size: 1.2rem;
-  color: #A51C30;
+  color: #a51c30;
 }
 
 /* ======= IMAGEN DE EJEMPLO DEL MÉTODO ======= */
@@ -610,7 +872,7 @@ h1 {
   max-width: 90%;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -654,7 +916,7 @@ h1 {
 }
 
 .btn-pomodoro {
-  background-color: #A51C30;
+  background-color: #a51c30;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -666,4 +928,67 @@ h1 {
 
 .btn-pomodoro:hover {
   background-color: #e5533d;
+}
+
+#barra-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+#barra-usuario a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+#barra-usuario div {
+  gap: 4px;
+}
+
+#barra-usuario a:hover {
+  text-decoration: underline;
+}
+
+#barra-usuario button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#barra-usuario button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.perfil-container {
+  max-width: 600px;
+  margin: 100px auto 50px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.perfil-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.perfil-info p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.nombre-usuario {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
